@@ -4,7 +4,7 @@ import styled from 'styled-components';
 const Camera = () => (
   <Flex>
     {/* <embed src="http://10.0.0.209:8081" height='480' width="640"/> */}
-    <Stylediframe src="http://10.0.0.209:8081" frameborder="0" allowfullscreen></Stylediframe>
+    <Stylediframe src="http://localhost:8081" frameborder="0" allowfullscreen></Stylediframe>
   </Flex>
 )
 const Flex = styled.div`

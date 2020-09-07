@@ -9,7 +9,7 @@ const Home = () => {
     let mounted = true;
 
     const fetchData = () => {
-      axios.get('/text/shakerdata.txt')
+      axios.get('/api/shakerdata.txt')
         .then(res => {
           if (mounted) {
             setData(res.data)
