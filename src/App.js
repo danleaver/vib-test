@@ -10,7 +10,7 @@ const App = () => {
   console.log(showCam)
   return(
     <>
-      <CameraDiv onClick={()=>setShowCam(!showCam)} showCam={showCam}/>
+      {/* <CameraDiv onClick={()=>setShowCam(!showCam)} showCam={showCam}/> */}
       {showCam 
         ? 
           <Camera />
@@ -21,11 +21,8 @@ const App = () => {
   )
 }
 
-
 const CameraDiv = styled.div`
   position: fixed;
-  // top: 1.15rem;
-  // right: 2rem;
   top: 0rem;
   right: 0.25rem;
   height: 60px;

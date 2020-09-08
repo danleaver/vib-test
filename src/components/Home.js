@@ -7,24 +7,42 @@ const Home = () => {
   
   useEffect(() => {  
     let mounted = true;
+    let retry = 5
+    
+    console.log("START:", new Date())
 
     const fetchData = () => {
       axios.get('/api/shakerdata.txt')
         .then(res => {
           if (mounted) {
+            retry = 5
             setData(res.data)
             setTimeout(() => {
               fetchData()
             }, 1000); 
           }
         })
-        .catch(console.log)   
+        .catch(err => {
+          console.log(err)
+          retry --
+          console.log("CONNECTION FAILED, RETRYING IN 5 SECONDS, RETRIES REMAINING:", retry)
+          
+          if (retry > 0 ) {
+            setTimeout(() => {
+              fetchData()
+            }, 5000)
+          } else {
+            console.log("CONNECTION TO SERVER HAS FAILED PLEASE REFRESH")
+            console.log( new Date(), '<---END')
+          }
+        })   
     }
 
     fetchData()
 
     return () => mounted = false
   }, [])
+  
 
   return (
     <Wrapper>
