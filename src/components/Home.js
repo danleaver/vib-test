@@ -12,15 +12,24 @@ const Home = () => {
     console.log("START:", new Date())
 
     const fetchData = () => {
-      axios.get('/api/shakerdata.txt')
+      if (mounted) {
+        axios.get('/api/shakerdata.txt')
         .then(res => {
-          if (mounted) {
-            retry = 5
+          console.log(res.data)
+          retry = 5
+
+          if (Array.isArray(res.data)) {
             setData(res.data)
             setTimeout(() => {
               fetchData()
-            }, 1000); 
+            }, 1000);  
+          } else {
+            console.log("INVALID DATA TYPE, trying again....")
+            setTimeout(() => {
+              fetchData()
+            }, 5000);  
           }
+   
         })
         .catch(err => {
           console.log(err)
@@ -35,7 +44,8 @@ const Home = () => {
             console.log("CONNECTION TO SERVER HAS FAILED PLEASE REFRESH")
             console.log( new Date(), '<---END')
           }
-        })   
+        }) 
+      } 
     }
 
     fetchData()
