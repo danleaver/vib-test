@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
+import Profile from './Profile';
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Home = () => {
   const [data, setData] = useState([])
-  
+  const { isAuthenticated } = useAuth0();
+
   useEffect(() => {  
     let mounted = true;
     let retry = 5
@@ -56,16 +59,21 @@ const Home = () => {
 
   return (
     <Wrapper>
-      { data.map( (item, i) => (
-        <Flex key={i}>
-          <StyledDiv isLabel={true}>
+      <Profile />
+      {isAuthenticated && 
+        <>
+          { data.map( (item, i) => (
+            <Flex key={i}>
+            <StyledDiv isLabel={true}>
             {item.label}
-          </StyledDiv>
-          <StyledDiv>
-            {item.value}
-          </StyledDiv>
-        </Flex>
-      ))}
+              </StyledDiv>
+              <StyledDiv>
+                {item.value}
+              </StyledDiv>
+            </Flex>
+          ))}
+        </>
+      }
     </Wrapper>
   )
 }

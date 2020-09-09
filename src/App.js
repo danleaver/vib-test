@@ -4,22 +4,19 @@ import Camera from './components/Camera';
 import camIcon from './icons/cam.svg';
 import camOffIcon from './icons/cam_off.svg';
 import styled from 'styled-components';
+import { Switch, Route } from 'react-router-dom';
+import Login from './components/Login'
 
 const App = () => {
-  const [ showCam, setShowCam ] = useState(false)
-  console.log(showCam)
+
   return(
-    <>
-      {/* <CameraDiv onClick={()=>setShowCam(!showCam)} showCam={showCam}/> */}
-      {showCam 
-        ? 
-          <Camera />
-        :
-          <Home />
-      }
-    </>  
+    <Switch>
+      <Route exact path='/' component={Home} />
+      <Route exact path='/login' component={Login} />
+    </Switch>
   )
 }
+
 
 const CameraDiv = styled.div`
   position: fixed;
@@ -33,6 +30,6 @@ const CameraDiv = styled.div`
   background-position: center;
   z-index: 1;
   filter: opacity(${props => props.showCam ? "50%" : "100%"});
-  
 `
+
 export default App;
