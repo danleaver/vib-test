@@ -1,19 +1,19 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
+// import axios from 'axios';
 import styled from 'styled-components';
+import { withRouter } from "react-router-dom";
 
 const Reconnect = () => {
-
   const handleClick = () => {
-    
+    window.location.reload(false)
   }
   return(
-    <StyledButton onClick={handleClick}>Reconnect</StyledButton>
+    <StyledButton onClick={handleClick}>Refresh</StyledButton>
   )
 
 }
 
-export default Reconnect
+export default withRouter(Reconnect)
 
 const StyledButton = styled.button`
 	box-shadow: 0px 10px 14px -7px #3e7327;

@@ -22,10 +22,10 @@ const Flex = styled.div`
   // width: 1vw;
   // height: 100%;
 `
-const Stylediframe = styled.iframe`
-  position: absolute;
-  width:100vw;
-  height:100vh;
-`
+// const Stylediframe = styled.iframe`
+//   position: absolute;
+//   width:100vw;
+//   height:100vh;
+// `
 
 export default Camera;
