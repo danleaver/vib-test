@@ -6,8 +6,8 @@ import Login from './Login';
 import styled from 'styled-components';
 import Reconnect from "./Reconnect";
 
-const Profile = (props) => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
+const Profile = () => {
+  const { isAuthenticated, isLoading } = useAuth0();
 
   if (isLoading) {
     return <div>Loading ...</div>;
@@ -20,7 +20,7 @@ const Profile = (props) => {
       ? 
 
         <UserInfoDiv>
-          <Reconnect isLive={props.isLive} setIsLive={props.setIsLive}/>
+          <Reconnect/>
           <Logout />
         </UserInfoDiv>
       :
@@ -33,12 +33,12 @@ const Profile = (props) => {
   );
 };
 
-const StyledP = styled.p`
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  font-size: 24px;
-`
+// const StyledP = styled.p`
+//   white-space: nowrap;
+//   overflow: hidden;
+//   text-overflow: ellipsis;
+//   font-size: 24px;
+// `
 const UserInfoDiv = styled.div`
   display: flex;
   align-items: center;

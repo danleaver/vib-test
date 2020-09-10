@@ -84,7 +84,7 @@ const Monitor = () => {
         }, 1000); 
       } else {
         status !== streaming && setStatus(streaming)
-        const timer = setTimeout(() => {
+        setTimeout(() => {
           fetchData()
         }, 1000);  
       }
@@ -137,11 +137,11 @@ const Circle = styled.div`
 const StyledP = styled.p`
   padding: 0 1rem;
 `
-const Flex = styled.div`
-  display: flex;
-  justify-content: space-between;
-  padding: 0 0 0.5rem 0;
-`
+// const Flex = styled.div`
+//   display: flex;
+//   justify-content: space-between;
+//   padding: 0 0 0.5rem 0;
+// `
 const WrapperData = styled.div`
   padding-bottom: 1rem;
 `
