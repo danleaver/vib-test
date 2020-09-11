@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import { Auth0Provider } from "@auth0/auth0-react";
 import { BrowserRouter, } from 'react-router-dom';
+import { ConfigProvider } from './providers/ConfigProvider';
 
 
 ReactDOM.render(
@@ -13,9 +14,11 @@ ReactDOM.render(
       clientId="v3vradqPJ3vj3RY5Pyh2fYGa5f6ErYdB"
       redirectUri={window.location.origin}
       >
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
+        <ConfigProvider>
+          <BrowserRouter>
+            <App />
+          </BrowserRouter>
+        </ConfigProvider>
     </Auth0Provider>
   </React.StrictMode>,
   document.getElementById('root')

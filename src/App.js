@@ -5,7 +5,7 @@ import Home from './components/Home';
 // import camOffIcon from './icons/cam_off.svg';
 // import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
-import Login from './components/Login'
+import Login from './components/Login';
 
 const App = () => {
 

@@ -3,17 +3,16 @@ import axios from 'axios';
 import styled from 'styled-components';
 
 const Monitor = () => {
-  const [data, setData] = useState([])
+  const [ data, setData ] = useState([])
   const [ status, setStatus ] = useState("Connecting...")
   const streaming = "Data Streaming Live"
+  const initialBlink = 30
   let serverRetry = 5
-  let blinkRetry = 9
+  let blinkRetry = initialBlink
   let prevBlink = 0
   let startUp = 0
- 
 
   const fetchData = () => {
-    //NOW HOW DO I STOP THIS??
     axios.get('/api/shakerdata.txt')
       .then(res => {
         console.log(res.data, "<-res.data")
@@ -68,7 +67,7 @@ const Monitor = () => {
   }
 
   const storeData = (contents) => {
-    blinkRetry = 9
+    blinkRetry = initialBlink
     if (Array.isArray(contents)) {
       startUp > 0 && setData(contents)
       if (startUp === 1){
