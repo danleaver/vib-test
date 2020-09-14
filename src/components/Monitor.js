@@ -62,7 +62,7 @@ const Monitor = () => {
       console.log("INVALID DATA TYPE, trying again ...")
       setTimeout(() => {
         fetchData()
-      }, 5000);  
+      }, 500);  
     }
   }
 
