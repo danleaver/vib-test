@@ -1,60 +1,39 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React from 'react';
+// import axios from 'axios';
 import styled from 'styled-components';
+import Profile from './Profile';
+import { useAuth0 } from "@auth0/auth0-react";
+import Monitor from './Monitor';
 
 const Home = () => {
-  const [data, setData] = useState([])
+  const { isAuthenticated, user } = useAuth0();
   
-  useEffect(() => {  
-    let mounted = true;
-
-    const fetchData = () => {
-      axios.get('/text/shakerdata.txt')
-        .then(res => {
-          if (mounted) {
-            setData(res.data)
-            setTimeout(() => {
-              fetchData()
-            }, 1000); 
-          }
-        })
-        .catch(console.log)   
-    }
-
-    fetchData()
-
-    return () => mounted = false
-  }, [])
-
   return (
-    <Wrapper>
-      { data.map( (item, i) => (
-        <Flex key={i}>
-          <StyledDiv isLabel={true}>
-            {item.label}
-          </StyledDiv>
-          <StyledDiv>
-            {item.value}
-          </StyledDiv>
-        </Flex>
-      ))}
-    </Wrapper>
+    <>
+      {isAuthenticated && 
+        <StyledP>{user.name}</StyledP>
+      }
+      <Wrapper>
+        <Profile/>
+        {isAuthenticated &&
+            <Monitor/> 
+        }
+      </Wrapper>
+    </>
   )
 }
 
 const Wrapper = styled.div`
-  padding: 1rem 0.5rem;
+  padding: 1rem
 `
-const Flex = styled.div`
-  padding: 0.5rem 1rem;
-  font-size: 2rem;
-`
-const StyledDiv = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: ${props => props.isLabel ? "#d9d9d9" : "#92d150"};
-  padding: ${props => props.isLabel ? "0.25rem" : "0.5rem"};
+const StyledP = styled.p`
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 12px;
+  text-align: right;
+  padding-right: 1rem;
+  line-height: 1rem;
 `
 
 export default Home
